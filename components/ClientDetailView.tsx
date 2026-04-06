@@ -154,7 +154,7 @@ export function ClientDetailView({ client }: { client: EnrichedClient }) {
       {tab === "overview" && (
         <div className="grid gap-4 md:grid-cols-2">
           {/* Client Info */}
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="card p-6">
             <h2 className="text-sm font-semibold text-slate-600 mb-4">Client Info</h2>
             <dl className="space-y-3">
               {[
@@ -175,7 +175,7 @@ export function ClientDetailView({ client }: { client: EnrichedClient }) {
           </div>
 
           {/* Quick Actions */}
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="card p-6">
             <h2 className="text-sm font-semibold text-slate-600 mb-4">Quick Actions</h2>
             <div className="space-y-3">
               <button
@@ -228,7 +228,7 @@ export function ClientDetailView({ client }: { client: EnrichedClient }) {
       {/* Research Tab */}
       {tab === "research" && (
         <div className="space-y-4">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="card p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h2 className="text-sm font-semibold text-slate-700 flex items-center gap-2">
@@ -256,7 +256,7 @@ export function ClientDetailView({ client }: { client: EnrichedClient }) {
           )}
 
           {localBriefs.map(brief => (
-            <div key={brief.id} className="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div key={brief.id} className="card overflow-hidden">
               <div className="flex items-center justify-between p-5 border-b border-slate-100">
                 <div>
                   <p className="font-semibold text-slate-900 text-sm">{brief.niche} — Strategy Brief</p>
@@ -280,7 +280,7 @@ export function ClientDetailView({ client }: { client: EnrichedClient }) {
           ))}
 
           {localBriefs.length === 0 && !generatingBrief && (
-            <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-sm">
+            <div className="card p-12 text-center">
               <Sparkles size={40} className="text-slate-200 mx-auto mb-3" />
               <p className="text-slate-400 text-sm">No briefs yet. Generate your first one above.</p>
             </div>
@@ -291,7 +291,7 @@ export function ClientDetailView({ client }: { client: EnrichedClient }) {
       {/* Scripts Tab */}
       {tab === "scripts" && (
         <div className="space-y-4">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="card p-6">
             <h2 className="text-sm font-semibold text-slate-600 mb-4 flex items-center gap-2">
               <FileText size={14} className="text-accent" />Generate Script
             </h2>
@@ -320,14 +320,14 @@ export function ClientDetailView({ client }: { client: EnrichedClient }) {
           )}
 
           {localScripts.length === 0 && !generatingScript ? (
-            <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-sm">
+            <div className="card p-12 text-center">
               <FileText size={40} className="text-slate-200 mx-auto mb-3" />
               <p className="text-slate-400 text-sm">No scripts yet. Generate your first one above.</p>
             </div>
           ) : (
             <div className="space-y-3">
               {localScripts.map(script => (
-                <div key={script.id} className="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+                <div key={script.id} className="card overflow-hidden">
                   <div
                     className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50"
                     onClick={() => setExpandedScript(expandedScript === script.id ? null : script.id)}
@@ -377,7 +377,7 @@ export function ClientDetailView({ client }: { client: EnrichedClient }) {
       {tab === "tasks" && (
         <div className="space-y-3">
           {client.tasks.length === 0 ? (
-            <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-sm">
+            <div className="card p-12 text-center">
               <CheckSquare size={40} className="text-slate-200 mx-auto mb-3" />
               <p className="text-slate-400 text-sm">No tasks yet.</p>
             </div>

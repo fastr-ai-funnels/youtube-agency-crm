@@ -103,8 +103,8 @@ export function LeadsBoard({ leads }: Props) {
 
       {/* Edit modal */}
       {editingLead && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-          <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 space-y-4 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-md p-4">
+          <div className="glass-modal w-full max-w-md p-6 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-slate-900">Edit Lead</h3>
               <button onClick={() => setEditingLead(null)} className="text-slate-400 hover:text-slate-700 text-2xl leading-none">×</button>

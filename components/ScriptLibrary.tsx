@@ -88,7 +88,7 @@ export function ScriptLibrary({ scripts, clients }: { scripts: Script[]; clients
         <div className="space-y-3">
           {generating && <div className="rounded-3xl border border-slate-200 bg-white p-6 h-32 shimmer" />}
           {localScripts.map(script => (
-            <div key={script.id} className="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div key={script.id} className="card overflow-hidden">
               <div
                 className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50"
                 onClick={() => setExpandedId(expandedId === script.id ? null : script.id)}

@@ -68,7 +68,7 @@ export function FinancialDashboard({ clients, expenses }: Props) {
       </div>
 
       {/* Bar chart */}
-      <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="card p-6">
         <div className="mb-4">
           <h2 className="text-lg font-semibold text-slate-900">Last 6 Months</h2>
           <p className="text-sm text-slate-400">Revenue auto-derived from active client retainers</p>
@@ -94,7 +94,7 @@ export function FinancialDashboard({ clients, expenses }: Props) {
       </div>
 
       {/* Expense manager */}
-      <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="card p-6">
         <p className="text-xs text-slate-400 italic mb-4">
           Note: Monthly revenue is auto-derived from active client retainers. No manual revenue entry needed.
         </p>

@@ -96,7 +96,7 @@ export function AgentChat() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto rounded-3xl border border-slate-200 bg-white shadow-sm p-5 space-y-4">
+      <div className="flex-1 overflow-y-auto card p-5 space-y-4">
         {messages.length === 0 && !loading && (
           <div className="h-full flex flex-col items-center justify-center text-center py-8">
             <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-4">
