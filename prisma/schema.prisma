@@ -73,13 +73,30 @@ model Script {
 model InstagramLead {
   id         String    @id @default(cuid())
   handle     String
-  followers  String?
+  followers  Int?
   niche      String?
   profileUrl String?
-  stage      String    @default("SENT")
+  stage      String    @default("FOUND")
   notes      String?
   reminderAt DateTime?
   createdAt  DateTime  @default(now())
+}
+
+model AgentConversation {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      String
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([sessionId, createdAt])
+}
+
+model AgentMemory {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
 }
 
 model Project {

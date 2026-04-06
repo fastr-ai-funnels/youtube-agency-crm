@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: "/scripts", label: "Scripts" },
   { href: "/financials", label: "Financials" },
   { href: "/calendar", label: "Calendar" },
+  { href: "/agent", label: "Agent" },
 ];
 
 export function TopNav() {
