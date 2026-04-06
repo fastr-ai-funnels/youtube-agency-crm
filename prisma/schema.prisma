@@ -46,6 +46,8 @@ model Client {
   contentBriefs        ContentBrief[]
   scripts              Script[]
   createdAt            DateTime           @default(now())
+
+  @@map("yt_clients")
 }
 
 model ContentBrief {
@@ -55,6 +57,8 @@ model ContentBrief {
   niche     String
   brief     String
   createdAt DateTime @default(now())
+
+  @@map("yt_content_briefs")
 }
 
 model Script {
@@ -68,6 +72,8 @@ model Script {
   cta        String
   fullScript String
   createdAt  DateTime @default(now())
+
+  @@map("yt_scripts")
 }
 
 model InstagramLead {
@@ -80,6 +86,8 @@ model InstagramLead {
   notes      String?
   reminderAt DateTime?
   createdAt  DateTime  @default(now())
+
+  @@map("yt_instagram_leads")
 }
 
 model AgentConversation {
@@ -90,6 +98,7 @@ model AgentConversation {
   createdAt DateTime @default(now())
 
   @@index([sessionId, createdAt])
+  @@map("yt_agent_conversations")
 }
 
 model AgentMemory {
@@ -97,6 +106,8 @@ model AgentMemory {
   key       String   @unique
   value     String
   updatedAt DateTime @updatedAt
+
+  @@map("yt_agent_memory")
 }
 
 model Project {
@@ -111,6 +122,8 @@ model Project {
   tasks            Task[]
   deliverableGroup DeliverableGroup?
   createdAt        DateTime          @default(now())
+
+  @@map("yt_projects")
 }
 
 model Task {
@@ -127,6 +140,8 @@ model Task {
   client      Client?          @relation("ClientTasks", fields: [clientId], references: [id], onDelete: SetNull)
   deliverable Deliverable?
   createdAt   DateTime         @default(now())
+
+  @@map("yt_tasks")
 }
 
 model DeliverableGroup {
@@ -139,6 +154,8 @@ model DeliverableGroup {
   project      Project?      @relation(fields: [projectId], references: [id], onDelete: SetNull)
   deliverables Deliverable[]
   createdAt    DateTime      @default(now())
+
+  @@map("yt_deliverable_groups")
 }
 
 model Deliverable {
@@ -152,6 +169,8 @@ model Deliverable {
   taskId    String?          @unique
   task      Task?            @relation(fields: [taskId], references: [id], onDelete: SetNull)
   createdAt DateTime         @default(now())
+
+  @@map("yt_deliverables")
 }
 
 model Expense {
@@ -161,6 +180,8 @@ model Expense {
   purpose   String?
   month     String
   createdAt DateTime @default(now())
+
+  @@map("yt_expenses")
 }
 
 model Lead {
@@ -179,4 +200,6 @@ model Lead {
   revenueOnClose      Int?
   downsellPathTaken   String?
   createdAt           DateTime  @default(now())
+
+  @@map("yt_leads")
 }
