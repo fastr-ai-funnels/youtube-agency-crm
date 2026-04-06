@@ -170,9 +170,6 @@ export async function createTask(formData: FormData) {
   const projectId = formData.get("projectId")?.toString().trim() || null;
   const clientId = formData.get("clientId")?.toString().trim() || null;
 
-  // At least one of projectId or clientId must be provided
-  if (!projectId && !clientId) return;
-
   await prisma.task.create({
     data: {
       title,
