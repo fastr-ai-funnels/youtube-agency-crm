@@ -1,0 +1,165 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Client {
+  id                   String             @id @default(cuid())
+  companyName          String
+  owner                String
+  email                String
+  phone                String?
+  tier                 String             @default("STANDARD")
+  services             String
+  monthlyRetainer      Int?
+  stage                String             @default("LEAD")
+  frameioLink          String?
+  contractUrl          String?
+  startDate            DateTime           @default(now())
+  termLength           Int                @default(12)
+  adAccountNumber      String?
+  adAccountLink        String?
+  deliverablesNeeded   String?
+  setupFeeStatus       String?
+  retainerStatus       String?
+  crmApiStatus         String?
+  twilioNumber         String?
+  elevenLabsVoiceId    String?
+  n8nWorkflowId        String?
+  goLiveDate           DateTime?
+  resultsNotes         String?
+  // YouTube-specific
+  channelUrl           String?
+  channelHandle        String?
+  niche                String?
+  contentStyle         String?
+  targetAudience       String?
+  postsPerWeek         Int?
+  projects             Project[]
+  deliverableGroups    DeliverableGroup[]
+  tasks                Task[]             @relation("ClientTasks")
+  contentBriefs        ContentBrief[]
+  scripts              Script[]
+  createdAt            DateTime           @default(now())
+}
+
+model ContentBrief {
+  id        String   @id @default(cuid())
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  niche     String
+  brief     String
+  createdAt DateTime @default(now())
+}
+
+model Script {
+  id         String   @id @default(cuid())
+  clientId   String
+  client     Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  title      String
+  hook       String
+  intro      String
+  body       String
+  cta        String
+  fullScript String
+  createdAt  DateTime @default(now())
+}
+
+model InstagramLead {
+  id         String    @id @default(cuid())
+  handle     String
+  followers  String?
+  niche      String?
+  profileUrl String?
+  stage      String    @default("SENT")
+  notes      String?
+  reminderAt DateTime?
+  createdAt  DateTime  @default(now())
+}
+
+model Project {
+  id               String            @id @default(cuid())
+  name             String
+  summary          String            @default("")
+  status           String            @default("PLANNING")
+  kickoffDate      DateTime?
+  dueDate          DateTime?
+  clientId         String
+  client           Client            @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  tasks            Task[]
+  deliverableGroup DeliverableGroup?
+  createdAt        DateTime          @default(now())
+}
+
+model Task {
+  id          String           @id @default(cuid())
+  title       String
+  assignee    String           @default("")
+  status      String           @default("NOT_STARTED")
+  dueDate     DateTime?
+  notes       String?
+  link        String?
+  projectId   String?
+  project     Project?         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  clientId    String?
+  client      Client?          @relation("ClientTasks", fields: [clientId], references: [id], onDelete: SetNull)
+  deliverable Deliverable?
+  createdAt   DateTime         @default(now())
+}
+
+model DeliverableGroup {
+  id           String        @id @default(cuid())
+  name         String
+  type         String        @default("GENERAL")
+  clientId     String
+  client       Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  projectId    String?       @unique
+  project      Project?      @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  deliverables Deliverable[]
+  createdAt    DateTime      @default(now())
+}
+
+model Deliverable {
+  id        String           @id @default(cuid())
+  title     String
+  link      String?
+  completed Boolean          @default(false)
+  dueDate   DateTime?
+  groupId   String
+  group     DeliverableGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  taskId    String?          @unique
+  task      Task?            @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  createdAt DateTime         @default(now())
+}
+
+model Expense {
+  id        String   @id @default(cuid())
+  title     String
+  amount    Int
+  purpose   String?
+  month     String
+  createdAt DateTime @default(now())
+}
+
+model Lead {
+  id                  String    @id @default(cuid())
+  name                String
+  phone               String?
+  companyName         String?
+  readyToInvest       Boolean?
+  willingToStart      Boolean?
+  stage               String    @default("NEW")
+  notes               String?
+  source              String?
+  conditionalLogicTag String?
+  salesCallDate       DateTime?
+  outcome             String?
+  revenueOnClose      Int?
+  downsellPathTaken   String?
+  createdAt           DateTime  @default(now())
+}
