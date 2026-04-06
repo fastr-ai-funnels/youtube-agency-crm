@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { TopNav } from "@/components/TopNav";
+import { AppShell } from "@/components/AppShell";
 
 export const metadata: Metadata = {
   title: "YouTube Agency OS — DEMO",
@@ -11,10 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <TopNav />
-        <div className="mx-auto max-w-6xl px-4 pb-12">
-          {children}
-        </div>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
