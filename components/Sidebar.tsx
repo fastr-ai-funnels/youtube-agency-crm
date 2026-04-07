@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Users, UserPlus, Youtube, FileText, DollarSign, Calendar, Bot, Tv2, Settings
+  Users, UserPlus, Youtube, FileText, DollarSign, Calendar, Bot, Tv2, Settings, X
 } from "lucide-react";
 
 const NAV_LINKS = [
@@ -17,16 +17,30 @@ const NAV_LINKS = [
   { href: "/settings",             label: "Settings",   icon: Settings },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  mobileOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   return (
     <aside
-      className="glass-sidebar fixed inset-y-0 left-0 z-30 flex flex-col"
+      className={`sidebar-drawer glass-sidebar fixed inset-y-0 left-0 z-40 flex flex-col${mobileOpen ? " sidebar-open" : ""}`}
       style={{ width: "var(--sidebar-width)" }}
     >
       {/* Brand */}
-      <div className="flex items-center gap-2.5 px-4 py-5 border-b border-blue-100/60">
+      <div className="flex items-center gap-2.5 px-4 py-5 border-b border-blue-100/60 relative">
+        {/* Mobile close button */}
+        <button
+          className="md:hidden absolute top-3 right-3 p-1.5"
+          style={{ color: "#94a3b8", background: "none", border: "none", cursor: "pointer" }}
+          onClick={onClose}
+        >
+          <X size={16} />
+        </button>
+
         <div
           className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
           style={{
@@ -60,6 +74,7 @@ export function Sidebar() {
             <Link
               key={href}
               href={href}
+              onClick={onClose}
               className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-150 group ${
                 isActive
                   ? "text-blue-700"

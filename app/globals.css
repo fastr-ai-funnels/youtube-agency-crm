@@ -207,3 +207,20 @@ select:focus {
 .table-row:hover { background: rgba(37,99,235,0.03); }
 
 button:active:not(:disabled) { transform: scale(0.97); }
+
+/* ── MOBILE LAYOUT ──────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .main-content { margin-left: var(--sidebar-width); }
+}
+
+/* Sidebar drawer transitions */
+.sidebar-drawer {
+  transition: transform 300ms cubic-bezier(.16,1,.3,1);
+}
+@media (max-width: 767px) {
+  .sidebar-drawer { transform: translateX(-100%); }
+  .sidebar-drawer.sidebar-open { transform: translateX(0); }
+}
+@media (min-width: 768px) {
+  .sidebar-drawer { transform: translateX(0) !important; }
+}
