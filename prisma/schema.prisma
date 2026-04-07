@@ -111,6 +111,15 @@ model AgentMemory {
   @@map("yt_agent_memory")
 }
 
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+
+  @@map("yt_settings")
+}
+
 model Project {
   id               String            @id @default(cuid())
   name             String

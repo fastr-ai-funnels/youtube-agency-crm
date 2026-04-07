@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Users, UserPlus, Youtube, FileText, DollarSign, Calendar, Bot, Tv2
+  Users, UserPlus, Youtube, FileText, DollarSign, Calendar, Bot, Tv2, Settings
 } from "lucide-react";
 
 const NAV_LINKS = [
@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { href: "/financials",           label: "Financials", icon: DollarSign },
   { href: "/calendar",             label: "Calendar",   icon: Calendar },
   { href: "/agent",                label: "Agent",      icon: Bot },
+  { href: "/settings",             label: "Settings",   icon: Settings },
 ];
 
 export function Sidebar() {
